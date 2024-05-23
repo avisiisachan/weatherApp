@@ -38,7 +38,7 @@ function App() {
   }
   
   return (
-    <div className={`mx-auto max-w-screen-lg mt-4 py-5 px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32 bg-gradient-to-br shadow-xl shadow-gray-400 ${formatBackground()}`}>
+    <div className={`mx-auto max-w-screen-lg py-5 px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32 bg-gradient-to-br shadow-xl shadow-gray-400 ${formatBackground()}`}>
       <TopButtons setQuery={setQuery}/>
       <Input setQuery={setQuery} setUnits={setUnits}/>
       {weather && (

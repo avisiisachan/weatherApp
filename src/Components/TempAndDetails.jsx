@@ -1,101 +1,91 @@
-import React from 'react'
+import React from 'react';
 import { FaThermometerEmpty } from 'react-icons/fa';
 import { BiSolidDropletHalf } from 'react-icons/bi';
 import { FiWind } from 'react-icons/fi';
 import { GiSunrise, GiSunset } from 'react-icons/gi';
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 
-const TempAndDetails = ({weather: {temp, details, icon, temp_min, temp_max, sunrise, sunset, speed, humidity, feels_like}}) => {
+const TempAndDetails = ({ weather: { temp, details, icon, temp_min, temp_max, sunrise, sunset, speed, humidity, feels_like } }) => {
 
-
-    const verticalDetails=[
+    const verticalDetails = [
         {
             id: 1,
             Icon: FaThermometerEmpty,
             title: "Real Feel",
-            value:`${feels_like.toFixed()}°`
+            value: `${feels_like.toFixed()}°`
         },
         {
             id: 2,
             Icon: BiSolidDropletHalf,
             title: "Humidity",
-            value:`${humidity.toFixed()}%`
+            value: `${humidity.toFixed()}%`
         },
         {
             id: 3,
             Icon: FiWind,
             title: "Wind",
-            value:`${speed.toFixed()}km/hr`
+            value: `${speed.toFixed()}km/hr`
         },
     ];
 
-    const horizontalDetails=[
+    const horizontalDetails = [
         {
             id: 1,
             Icon: GiSunrise,
             title: "Sunrise",
-            value:sunrise
+            value: sunrise
         },
         {
             id: 2,
             Icon: GiSunset,
             title: "Sunset",
-            value:sunset
+            value: sunset
         },
         {
             id: 3,
             Icon: MdKeyboardArrowUp,
             title: "High",
-            value:`${temp_max.toFixed()}°`
+            value: `${temp_max.toFixed()}°`
         },
         {
             id: 4,
             Icon: MdKeyboardArrowDown,
             title: "Low",
-            value:`${temp_min.toFixed()}°`
+            value: `${temp_min.toFixed()}°`
         },
     ]
 
-  return (
-    <div>
-        <div className='flex items-center justify-center py-6 text-xl text-cyan-300'>
-            <p>{details}</p>
-        </div>
-
-        <div className='flex flex-row items-center justify-between py-3'>
-            <img src={icon} alt="" className='w-20' />
-            <p className='text-5xl'>{`${temp.toFixed()}°C`}</p>
-            <div className='flex flex-col space-y-3 items-start'>
-                {
-                    verticalDetails.map(({id, Icon, title, value})=>(
-                        <div key={id} className='flex font-light text-sm items-center justify-center'>
-                    <Icon size={18} className='mr-1'/>
-                    {`${title}: `} <span className='font-medium ml-1'>{value}</span>
-                </div>
-                    ))
-                }
-                
+    return (
+        <div>
+            <div className='flex items-center justify-center py-6 text-xl text-cyan-300'>
+                <p>{details}</p>
             </div>
-        </div>
 
-        <div className='flex flex-row items-center justify-center space-x-10 text-sm py-3'>
+            <div className='flex flex-col sm:flex-row items-center justify-between py-3'>
+                <img src={icon} alt="" className='w-20 mb-4 sm:mb-0' />
+                <p className='text-5xl mb-4 sm:mb-0'>{`${temp.toFixed()}°C`}</p>
+                <div className='flex flex-col space-y-3 items-start'>
+                    {verticalDetails.map(({ id, Icon, title, value }) => (
+                        <div key={id} className='flex font-light text-sm items-center justify-center'>
+                            <Icon size={18} className='mr-1' />
+                            {`${title}: `} <span className='font-medium ml-1'>{value}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-            {
-                horizontalDetails.map(({id, Icon, title, value})=>(
+            <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm py-3'>
+                {horizontalDetails.map(({ id, Icon, title, value }) => (
                     <div key={id} className='flex flex-row items-center'>
                         <Icon size={30} />
                         <p className='font-light ml-1'>
-                        {`${title}: `} <span className='font-medium ml-1'>{value}</span>
+                            {`${title}: `} <span className='font-medium ml-1'>{value}</span>
                         </p>
                     </div>
-                ))
-            }
-
-            <div className='flex flex-row items-center'></div>
-
+                ))}
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
-export default TempAndDetails
+export default TempAndDetails;
